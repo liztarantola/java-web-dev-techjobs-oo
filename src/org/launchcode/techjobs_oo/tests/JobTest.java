@@ -53,4 +53,31 @@ public class JobTest {
         assertFalse(testJob4.equals(testJob5));
     }
 
+    @Test
+    public void toStringTest() {
+        Job testJob6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        int lastChar = (testJob6.toString().length() - 1);
+        assertEquals(testJob6.toString().charAt(0), '\n');
+        assertTrue(testJob6.toString().charAt(lastChar) == '\n');
+    }
+
+    @Test
+    public void containsLabelForEachField() {
+        Job testJob7 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+//        assertEquals(testJob7.toString().contains("ID: " + testJob7.getId()), true);
+//        assertTrue(testJob7.toString().contains("Name: " + testJob7.getName()) ==  true);
+        System.out.println(testJob7.toString());
+
+        assertEquals(testJob7.toString(), "\nID: " + testJob7.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPositionType: Quality control\nCore Competency: Persistence\n");
+    }
+
+    @Test
+    public void emptyField() {
+        Job testJob8 = new Job();
+        System.out.println(testJob8);
+//        assertEquals(testJob8.toString(), "\nID: " + testJob8.getId() + "\nName: null\nEmployer: null\nLocation: null\nPositionType: null\nCore Competency: null\n");
+//        assertEquals(testJob8.toString(), "\nID: " + testJob8.getId() + "\nName: Data not available\nEmployer: Data not available\nLocation: Data not available\nPositionType: Data not available\nCore Competency: Data not available\n");
+        assertEquals(testJob8.toString(), "OOPS! This job doesn't seem to exist.");
+    }
+
 }
